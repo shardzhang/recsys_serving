@@ -79,12 +79,16 @@ make -j4
 
 ```
 debug respBody: items {
-  item_id: 10024
-  score: 1
+  item_id: 10100
+  score: 0.537841037694204
 }
 items {
-  item_id: 10031
-  score: 1
+  item_id: 10005
+  score: 0.53316884944500553
+}
+items {
+  item_id: 10080
+  score: 0.53283963462103945
 }
 ...
 ```
@@ -102,6 +106,8 @@ DNN 模型包含 4 个全连接层：
 
 - **输入**：13 个特征槽 × 8 维 Embedding = 104 维
 - **输出**：CTR 概率 (0-1)
+- **权重初始化**：Xavier 初始化（`scale = sqrt(6 / (fan_in + fan_out))`）
+- **偏置初始化**：零初始化
 
 ## 特征槽定义
 

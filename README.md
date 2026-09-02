@@ -79,12 +79,16 @@ make -j4
 
 ```
 debug respBody: items {
-  item_id: 10024
-  score: 1
+  item_id: 10100
+  score: 0.537841037694204
 }
 items {
-  item_id: 10031
-  score: 1
+  item_id: 10005
+  score: 0.53316884944500553
+}
+items {
+  item_id: 10080
+  score: 0.53283963462103945
 }
 ...
 ```
@@ -102,6 +106,8 @@ The DNN model has 4 fully-connected layers:
 
 - **Input**: 13 feature slots × 8 embedding dimensions = 104
 - **Output**: CTR probability (0-1)
+- **Weight Initialization**: Xavier initialization (`scale = sqrt(6 / (fan_in + fan_out))`)
+- **Bias Initialization**: Zero
 
 ## Feature Slots
 
