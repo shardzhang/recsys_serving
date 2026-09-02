@@ -11,20 +11,6 @@ A lightweight C++ recommendation system serving framework with DNN-based CTR pre
 - **DNN Inference**: Multi-layer perceptron with ReLU activation
 - **Top-K Ranking**: Return top-K items by predicted CTR
 
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                      OnlineServer                           │
-├─────────────────────────────────────────────────────────────┤
-│  Request Parser → Feature Query → PB Example Construction   │
-│         ↓              ↓              ↓                     │
-│  Feature Hash → Embedding Lookup → Embedding Concat         │
-│         ↓              ↓              ↓                     │
-│  Forward Propagation → Sigmoid → Top-K Response             │
-└─────────────────────────────────────────────────────────────┘
-```
-
 ## Project Structure
 
 ```
