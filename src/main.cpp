@@ -84,11 +84,13 @@ int run() {
         vector<int> layers = {128, 64, 32, 1};
         int input_dim = slot_pos_map.size() * EMB_DIM;
         for (int k = 0; k < 4; ++k) {
+            // Xavier 初始化：scale = sqrt(6 / (fan_in + fan_out))
+            double scale = sqrt(6.0 / (input_dim + layers[k]));
             vector<vector<double>> mat;
             for (int i = 0; i < input_dim; ++i) {
                 vector<double> weights(layers[k], 0.0);
                 for (int j = 0; j < layers[k]; ++j) {
-                    weights[j] = (rand() % 10000) / 5000.0 - 1.0;
+                    weights[j] = ((rand() % 10000) / 5000.0 - 1.0) * scale;
                 }
                 mat.push_back(weights);
             }
@@ -98,9 +100,6 @@ int run() {
 
         for (int k = 0; k < 4; ++k) {
             vector<double> bias(layers[k], 0.0);
-            for (int i = 0; i < layers[k]; ++i) {
-                bias[i] = (rand() % 10000) / 5000.0 - 1.0;
-            }
             nn_bias.push_back(bias);
         }
     }
