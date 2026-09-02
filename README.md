@@ -7,7 +7,7 @@ A lightweight C++ recommendation system serving framework with DNN-based CTR pre
 - **Request Parsing**: Parse protobuf-based recommendation requests
 - **Feature Query**: Query user and item features from feature store
 - **Feature Engineering**: Hash-based feature extraction with time decay
-- **Embedding Lookup**: Lookup embeddings from parameter server
+- **Embedding Lookup**: Lookup embeddings from parameter server (simulated with local memory in demo)
 - **DNN Inference**: Multi-layer perceptron with ReLU activation
 - **Top-K Ranking**: Return top-K items by predicted CTR
 
