@@ -1,0 +1,24 @@
+syntax = "proto3";
+package reco_pb;
+
+message ItemInfo {
+  int32 item_id = 1;
+  double score = 2;
+}
+
+// Request
+message ReqBody {
+  string reqid = 1;
+  int32 reqdt = 2;
+  int32 user_id = 3;
+  repeated ItemInfo items = 4;
+  string device = 5;
+  string network = 6;
+  string scene_id = 7;
+  string ip = 8;
+}
+
+// Response
+message RespBody {
+  repeated ItemInfo items = 1;
+}

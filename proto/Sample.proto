@@ -1,0 +1,57 @@
+syntax = "proto3";
+package reco_pb;
+
+// 物品特征
+message ItemFeature {
+  int32 item_id = 1;
+  string first_type = 2;
+  string second_type = 3;
+}
+
+// 上下文特征
+message ContextFeature {
+  string reqid = 1;
+  int32 reqdt = 2;
+  string device = 3;
+  string network = 4;
+  string scene_id = 5;
+  string ip = 6;
+}
+
+// 用户特征
+message UserFeature {
+  int32 user_id = 1;
+  string age = 2;
+  string sex = 3;
+  // 用户点击序列特征
+  UserClickList user_click_list = 4;
+  message UserClickList {
+    repeated Elem click_list = 1;
+    message Elem {
+      int32 item_id = 1;
+      int32 cnt = 2;
+      int32 timestamp = 3;
+    }
+  }
+}
+
+// 明文样本
+message Sample {
+  ContextFeature context_feature = 1;
+  UserFeature user_feature = 2;
+  repeated ItemFeature item_features = 3;
+}
+
+// 哈希样本
+message HashSample {
+  User user = 1;
+  Item item = 2;
+  message Item {
+    repeated int32 slot_id = 1;
+    repeated int64 hash_val = 2;
+  }
+  message User {
+    repeated int32 slot_id = 1;
+    repeated int64 hash_val = 2;
+  }
+}
