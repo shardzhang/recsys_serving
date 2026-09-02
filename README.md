@@ -127,6 +127,18 @@ The DNN model has 4 fully-connected layers:
 | 101     | Item First Type     |
 | 102     | Item Second Type    |
 
+## Processing Flow
+
+1. **Request Parsing**: Parse protobuf request to extract user ID and candidate item list
+2. **Feature Query**: Query user and item features (age, sex, click history, etc.)
+3. **Sample Construction**: Fill features into Sample protobuf structure
+4. **Feature Hashing**: Convert features to hash values, mapping to fixed dimension space
+5. **Embedding Lookup**: Lookup embedding vectors by hash values
+6. **Pooling**: Sum/average pooling for multi-value features
+7. **Embedding Concat**: Concatenate all feature embeddings into input vector
+8. **Forward Propagation**: Calculate CTR prediction score through DNN
+9. **Sort & Return**: Sort by score in descending order, return Top-K results
+
 ## License
 
 MIT
