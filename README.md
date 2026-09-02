@@ -65,7 +65,7 @@ sudo apt-get install cmake libprotobuf-dev protobuf-compiler
 
 ```bash
 mkdir build && cd build
-cmake ..
+cmake -B . ..
 make -j4
 ```
 

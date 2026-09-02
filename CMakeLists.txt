@@ -9,6 +9,9 @@ if(NOT Protobuf_FOUND AND NOT PROTOBUF_FOUND)
     message(FATAL_ERROR "protobuf not found, install via: brew install protobuf")
 endif()
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(ABSL REQUIRED absl_base absl_strings absl_log_internal_check_op absl_log_internal_message absl_log_internal_nullguard absl_log_internal_format absl_log_severity)
+
 set(PROTO_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/proto)
 set(PROTO_GEN_DIR ${CMAKE_CURRENT_BINARY_DIR}/proto_gen)
 
@@ -47,4 +50,5 @@ add_executable(recsys_serving
 )
 add_dependencies(recsys_serving proto_gen)
 target_include_directories(recsys_serving PRIVATE ${PROTO_GEN_DIR})
-target_link_libraries(recsys_serving PRIVATE protobuf::libprotobuf)
+target_link_libraries(recsys_serving PRIVATE protobuf::libprotobuf ${ABSL_LIBRARIES})
+target_link_directories(recsys_serving PRIVATE ${ABSL_LIBRARY_DIRS})
